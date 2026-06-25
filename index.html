@@ -116,8 +116,8 @@
     position: absolute;
     inset: 0;
     background-image: url('hero.JPG');
-    background-size: cover;
-    background-position: right center;
+    background-size: auto 100%;
+    background-position: right top;
     background-repeat: no-repeat;
   }
   .hero-overlay {
@@ -252,19 +252,36 @@
 
   /* WHY */
   #why { background: #080808; }
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
   .why-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1px;
     background: #141414;
     border: 0.5px solid #141414;
     border-radius: 6px;
     overflow: hidden;
+    margin-top: 0;
   }
-  .why-card { background: #0d0d0d; padding: 24px 18px; }
-  .why-num { font-size: 9px; letter-spacing: 2px; color: #D4A843; text-transform: uppercase; margin-bottom: 12px; }
-  .why-title { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+  .why-card { background: #0d0d0d; padding: 22px 18px; }
+  .why-num { font-size: 9px; letter-spacing: 2px; color: #D4A843; text-transform: uppercase; margin-bottom: 10px; }
+  .why-title { font-size: 12px; font-weight: 600; margin-bottom: 7px; color: #fff; }
   .why-desc { font-size: 11px; color: #666; line-height: 1.65; }
+  .why-photo-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px;
+    background: #111;
+    position: sticky;
+    top: 80px;
+  }
 
   /* RESULTS */
   #results { background: #090909; }
@@ -278,11 +295,10 @@
   .result-card { border: 0.5px solid #1c1c1c; border-radius: 6px; overflow: hidden; background: #0d0d0d; }
   .result-img {
     width: 100%;
-    aspect-ratio: 2/1;
+    aspect-ratio: 1/1;
     object-fit: cover;
     display: block;
     background: #111;
-    min-height: 120px;
   }
   .result-info { padding: 10px 14px; }
   .result-name { font-size: 12px; color: #ccc; margin-bottom: 2px; }
@@ -371,6 +387,9 @@
 
   /* MOBILE */
   @media (max-width: 900px) {
+    .why-layout { grid-template-columns: 1fr; }
+    .why-photo-container { order: -1; }
+    .why-photo-img { aspect-ratio: 16/9; position: static; }
     .why-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 768px) {
@@ -412,7 +431,7 @@
     .who-grid { grid-template-columns: 1fr; }
     .results-grid { grid-template-columns: 1fr 1fr; }
     .how-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
     .hero-btns { flex-direction: column; }
     .cta-btns { flex-direction: column; align-items: center; }
   }
@@ -477,9 +496,8 @@
   <div class="about-grid">
     <div class="about-left">
       <div class="eyebrow">О тренере</div>
-      <div class="about-photos">
-        <img src="training.JPG" alt="Дмитрий Муравьев тренировка" class="about-photo">
-        <img src="stage.JPG" alt="Дмитрий Муравьев соревнования" class="about-photo">
+      <div style="margin-bottom:20px">
+        <img src="stage.JPG" alt="Дмитрий Муравьев соревнования" class="about-photo-single">
       </div>
       <p class="about-text">
         Дмитрий Муравьев — практикующий тренер с опытом работы с клиентами любого уровня:
@@ -600,32 +618,44 @@
 <!-- WHY -->
 <section id="why">
   <div class="container">
-    <div class="eyebrow">Почему Дмитрий</div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-num">01</div>
-        <div class="why-title">Сам спортсмен</div>
-        <div class="why-desc">Победитель и призёр соревнований — понимает, что такое настоящий результат изнутри.</div>
+    <div class="why-layout">
+      <div>
+        <div class="eyebrow">Почему Дмитрий</div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-num">01</div>
+            <div class="why-title">Сам спортсмен</div>
+            <div class="why-desc">Победитель и призёр соревнований — понимает, что такое настоящий результат изнутри.</div>
+          </div>
+          <div class="why-card">
+            <div class="why-num">02</div>
+            <div class="why-title">Любой уровень</div>
+            <div class="why-desc">Первый раз в зале или готовишься к сцене — работаем с каждым одинаково серьёзно.</div>
+          </div>
+          <div class="why-card">
+            <div class="why-num">03</div>
+            <div class="why-title">Системный подход</div>
+            <div class="why-desc">Не просто тренировки — меняем питание, режим и мышление. Комплексно.</div>
+          </div>
+          <div class="why-card">
+            <div class="why-num">04</div>
+            <div class="why-title">Контроль результата</div>
+            <div class="why-desc">Замеры, прогресс, корректировки — видишь динамику на каждом этапе работы.</div>
+          </div>
+          <div class="why-card">
+            <div class="why-num">05</div>
+            <div class="why-title">7+ лет практики</div>
+            <div class="why-desc">Опыт с клиентами от подростков до соревнующихся атлетов. Знает как работает реально.</div>
+          </div>
+          <div class="why-card">
+            <div class="why-num">06</div>
+            <div class="why-title">Без шаблонов</div>
+            <div class="why-desc">Каждая программа — с нуля под тебя. Не скачанный план из интернета.</div>
+          </div>
+        </div>
       </div>
-      <div class="why-card">
-        <div class="why-num">02</div>
-        <div class="why-title">Любой уровень</div>
-        <div class="why-desc">Первый раз в зале или готовишься к сцене — работаем с каждым одинаково серьёзно.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">03</div>
-        <div class="why-title">Системный подход</div>
-        <div class="why-desc">Не просто тренировки — меняем питание, режим и мышление. Комплексно.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">04</div>
-        <div class="why-title">Контроль результата</div>
-        <div class="why-desc">Замеры, прогресс, корректировки — видишь динамику на каждом этапе работы.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">05</div>
-        <div class="why-title">7+ лет практики</div>
-        <div class="why-desc">Опыт с клиентами от подростков до соревнующихся атлетов. Знает как работает реально.</div>
+      <div class="why-photo-container">
+        <img src="training.JPG" alt="Дмитрий Муравьев тренировка" class="why-photo-img">
       </div>
     </div>
   </div>
@@ -640,73 +670,73 @@
     </div>
     <div class="results-grid">
       <div class="result-card">
-        <img src="result01.JPG" alt="Результат клиента 1" class="result-img">
+        <img src="result01.JPG" alt="Полина" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 1</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Полина · −8 кг · 9 месяцев</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result02.JPG" alt="Результат клиента 2" class="result-img">
+        <img src="result02.JPG" alt="Лев" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 2</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Лев · +15 кг мышц · 2 года</div>
+          <div class="result-type">Набор массы</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result03.JPG" alt="Результат клиента 3" class="result-img">
+        <img src="result03.JPG" alt="Кристина" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 3</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Кристина · −6 кг · 2,5 месяца</div>
+          <div class="result-type">Подготовка к фитнес-бикини</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result04.JPG" alt="Результат клиента 4" class="result-img">
+        <img src="result04.JPG" alt="Прасковья" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 4</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Прасковья · −10 кг · 9 месяцев</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result05.JPG" alt="Результат клиента 5" class="result-img">
+        <img src="result05.JPG" alt="Лиза" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 5</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Лиза · −25 кг · 1 год</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result06.JPG" alt="Результат клиента 6" class="result-img">
+        <img src="result06.JPG" alt="Тимур" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 6</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Тимур · −15 кг · 1 год</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result07.JPG" alt="Результат клиента 7" class="result-img">
+        <img src="result07.JPG" alt="Олеся" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 7</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Олеся · −17 кг · 1 год</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result08.JPG" alt="Результат клиента 8" class="result-img">
+        <img src="result08.JPG" alt="Вадим" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 8</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Вадим · +10 кг мышц · 2 года</div>
+          <div class="result-type">Набор массы</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result09.JPG" alt="Результат клиента 9" class="result-img">
+        <img src="result09.JPG" alt="Маша" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 9</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Маша · −8 кг · 10 месяцев</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
       <div class="result-card">
-        <img src="result10.JPG" alt="Результат клиента 10" class="result-img">
+        <img src="result10.JPG" alt="Татьяна" class="result-img">
         <div class="result-info">
-          <div class="result-name">Клиент 10</div>
-          <div class="result-type">До / После</div>
+          <div class="result-name">Татьяна · −8 кг · 6 месяцев</div>
+          <div class="result-type">Похудение</div>
         </div>
       </div>
     </div>
